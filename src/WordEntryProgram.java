@@ -16,13 +16,14 @@ public class WordEntryProgram extends JFrame {
     private JTextField textField;
     private JButton enterButton;
     private int successfulEnters = 0;
+    private final int wordsCounting = 6;
 
     public WordEntryProgram() throws IOException {
         setTitle("Word Entry Program");
         setSize(300, 150);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
-        label = new JLabel("Type any word!", SwingConstants.CENTER);
+        label = new JLabel("Generate " + wordsCounting + " words!", SwingConstants.CENTER);
         textField = new JTextField(15);
         enterButton = new JButton("Enter");
 
@@ -74,7 +75,7 @@ public class WordEntryProgram extends JFrame {
             // Save entered word to a file
             saveToFile(enteredWord);
 
-            if (successfulEnters >= 6) {
+            if (successfulEnters >= wordsCounting) {
                 JOptionPane.showMessageDialog(this, "Thank you!", "Success", JOptionPane.INFORMATION_MESSAGE);
                 System.exit(0);
             }
@@ -121,7 +122,7 @@ public class WordEntryProgram extends JFrame {
             while ((line = reader.readLine()) != null) {
                 entry++;
                 // Skip the next 5 lines to move to the next entry
-                for (int i = 0; i < 6; i++) {
+                for (int i = 0; i < wordsCounting; i++) {
                     reader.readLine();
                 }
             }
